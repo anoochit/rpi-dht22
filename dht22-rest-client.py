@@ -9,11 +9,10 @@ from time import gmtime, strftime
 sensor = Adafruit_DHT.DHT22
 pin = 4
 
-humidity, temperature = Adafruit_DHT.read_retry(sensor, pin)
-
 rest_server="http://192.168.88.252:3000/api/Temperatures"
 
 while True:
+  humidity, temperature = Adafruit_DHT.read_retry(sensor, pin)
   if humidity is not None and temperature is not None:
     ctime=datetime.datetime.now().strftime("%Y-%m-%dT%H:%M:%S")
     print 'Date={0} Temp={1:0.2f}*C  Humidity={2:0.2f}%'.format(ctime,temperature, humidity)
